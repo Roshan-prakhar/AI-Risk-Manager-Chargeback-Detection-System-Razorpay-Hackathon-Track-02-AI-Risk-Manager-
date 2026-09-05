@@ -1,0 +1,13 @@
+# FraudGuard API — pinned dependencies for Render deployment
+# Python 3.11+ required
+
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+
+# ML stack — exact versions that match training environment
+lightgbm==4.5.0
+scikit-learn==1.5.2
+joblib==1.4.2
+numpy==1.26.4
+pandas==2.2.3
