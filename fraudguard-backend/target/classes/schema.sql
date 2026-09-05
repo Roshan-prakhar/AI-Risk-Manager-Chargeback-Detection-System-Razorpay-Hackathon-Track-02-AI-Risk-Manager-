@@ -27,3 +27,18 @@ CREATE TABLE IF NOT EXISTS evidence_snapshots (
     cached_at             TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_evidence_cached_at ON evidence_snapshots(cached_at);
+
+CREATE TABLE IF NOT EXISTS dispute_verdicts (
+    id                  BIGINT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id      BIGINT NOT NULL,
+    reason_code         VARCHAR(30) NOT NULL,
+    verdict             VARCHAR(20) NOT NULL,
+    confidence          DOUBLE NOT NULL,
+    contradiction_flags CLOB,
+    evidence_summary    VARCHAR(1000),
+    routing_decision    VARCHAR(20) NOT NULL,
+    customer_text       CLOB,
+    decided_at          TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_verdicts_transaction ON dispute_verdicts(transaction_id);
+
