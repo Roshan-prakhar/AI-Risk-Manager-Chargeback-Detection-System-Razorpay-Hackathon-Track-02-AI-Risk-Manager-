@@ -9,6 +9,10 @@ fraudguard:
   scoring:
     python-api-url: http://localhost:8000
     timeout-ms: 2000
+  verifier:
+    model: gpt-4o
+    timeout-ms: 15000
+    auto-resolve-confidence-threshold: 0.85
 
 server:
   port: 8080
