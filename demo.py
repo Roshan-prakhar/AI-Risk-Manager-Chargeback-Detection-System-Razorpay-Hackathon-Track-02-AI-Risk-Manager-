@@ -28,8 +28,10 @@ import sys
 import json
 import time
 import textwrap
-import requests
-import threading
+import logging
+
+# Suppress encoder/missingness INFO noise so only demo output shows
+logging.disable(logging.WARNING)
 
 # ---------------------------------------------------------------------------
 # Console helpers
