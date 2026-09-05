@@ -33,8 +33,9 @@ ENV/
 env.bak/
 venv.bak/
 
-# Project specifics — large/generated files not needed for serving
-# NOTE: scoring artifacts (gbt_model.txt, calibrator, encoder, etc.) ARE committed
+# Artifacts — allow serving artifacts, exclude large/generated ones
+# Include: gbt_model.txt, calibrator.joblib, cat_encoder.joblib,
+#          train_stats.joblib, feature_cols.joblib, metrics_report.json
 artifacts/psi_reference.joblib
 artifacts/leaf_index.json
 artifacts/cost_curve.png

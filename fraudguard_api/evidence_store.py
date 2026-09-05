@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import sqlite3
 import threading
 from contextlib import contextmanager
@@ -26,9 +27,10 @@ from fraudguard_api.models import DeliveryStatus, EvidenceSnapshot, Tier
 log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# DB location — use /tmp on Render (ephemeral but available within session)
+# DB location — /tmp on Linux (Render), system temp on Windows (local dev)
 # ---------------------------------------------------------------------------
-_DB_PATH = Path("/tmp/fraudguard_evidence.db")
+_DB_PATH = Path(os.environ.get("EVIDENCE_DB_PATH", "") or
+                (Path("/tmp") if Path("/tmp").exists() else Path(os.environ["TEMP"]))) / "fraudguard_evidence.db"
 _lock = threading.Lock()
 
 
