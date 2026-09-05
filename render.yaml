@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: fraudguard-api
+    env: python
+    region: singapore     # closest to India
+    plan: free
+    rootDir: .            # repo root so fraud_gbt package is importable
+    buildCommand: pip install -r fraudguard_api/requirements.txt
+    startCommand: uvicorn fraudguard_api.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false       # set manually in Render dashboard — never committed to git
+      - key: PYTHONUTF8
+        value: "1"
+      - key: PYTHONUNBUFFERED
+        value: "1"
