@@ -1,0 +1,37 @@
+fraudguard:
+  routing:
+    staleness-max-hours: 168
+    refresh-cron: "0 0 */6 * * *"
+  evidence:
+    hot-cache-ttl-days: 15
+    cold-retention-days: 120
+    purge-cron: "0 0 2 * * *"
+  scoring:
+    python-api-url: http://localhost:8000
+    timeout-ms: 2000
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:fraudguard;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+  sql:
+    init:
+      mode: always
+  data:
+    redis:
+      host: localhost
+      port: 6379
